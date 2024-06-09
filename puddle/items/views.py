@@ -24,8 +24,15 @@ def new(request):
             return redirect('items:detail', pk=items.id)
     else:
         form = NewItemForm()
-    form = NewItemForm()
+    
     return render(request, 'items/form.html',{
         'form':form,
         'title': 'New Item',
     })
+
+@login_required
+def delete(request, pk):
+    items = get_object_or_404(Items, pk=pk, created_by=request.user)
+    items.delete()
+
+    return redirect('dashboard:index')
