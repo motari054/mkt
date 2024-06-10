@@ -1,7 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from items.models import Items
+from.forms import ConversationMessageForm
 from .models import Conversation
-from .forms import ConversationMessageForm
+
+
+
 
 def new_conversation(request, item_pk):
     item = get_object_or_404(Items, pk=item_pk)
@@ -27,7 +30,7 @@ def new_conversation(request, item_pk):
             conversation_message.created_by = request.user
             conversation_message.save()
 
-            return redirect('items':'detail', pk=item_pk)
+            return redirect('items:detail', pk=item_pk)
     else:
         form = ConversationMessageForm()
     

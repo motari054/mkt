@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 class Conversation(models.Model):
     item = models.ForeignKey(Items, related_name='conversations', on_delete=models.CASCADE)
-    numbers = models.ManyToManyField(User, related_name='converstions')
+    members = models.ManyToManyField(User, related_name='converstions')
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
     
